@@ -16,10 +16,13 @@ build_dir="$SCRIPT_DIR/build"
 
 mkdir "$build_dir"; cd "$build_dir"
 
+# Fetch jq
+wget -Ojq https://github.com/jqlang/jq/releases/download/jq-1.7/jq-linux-amd64
+
 # Fetch latest release
 read -r url_rpcs3 < <(curl -L -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" \
   https://api.github.com/repos/RPCS3/rpcs3-binaries-linux/releases/latest 2>/dev/null |
-  jq -r '.assets.[0].browser_download_url')
+  "$build_dir"/jq -r '.assets.[0].browser_download_url')
 wget "$url_rpcs3"
 appimage_rpcs3="$(basename "$url_rpcs3")"
 
