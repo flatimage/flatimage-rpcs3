@@ -16,7 +16,7 @@ jobs:
         # Install tools
         sudo apt install -y jq wget tar xz-utils pv git pcregrep
         # Build packages
-        ( mkdir $(pwd)/home.rpcs3; HOME="$(pwd)/home.rpcs3" FIM_DEBUG=1 ./build-arch.sh )
+        ( HOME="$(pwd)" FIM_DEBUG=1 ./build-arch.sh )
         # Move to dist
         mkdir dist
         mv build/rpcs3-arch.fim dist
