@@ -18,6 +18,7 @@ mkdir "$build_dir"; cd "$build_dir"
 
 # Fetch jq
 wget -Ojq https://github.com/jqlang/jq/releases/download/jq-1.7/jq-linux-amd64
+chmod +x jq
 
 # Fetch latest release
 read -r url_rpcs3 < <(curl -L -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" \
