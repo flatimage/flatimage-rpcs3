@@ -14,7 +14,7 @@ jobs:
     - name: Create rpcs3 package
       run: |
         # Install tools
-        sudo apt install -y wget tar xz-utils pv git pcregrep
+        sudo apt install -y jq wget tar xz-utils pv git pcregrep
         # Build packages
         ( mkdir $(pwd)/home.rpcs3; HOME="$(pwd)/home.rpcs3" FIM_DEBUG=1 ./build-arch.sh )
         # Move to dist
