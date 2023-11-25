@@ -14,7 +14,7 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 build_dir="$SCRIPT_DIR/build"
 
-mkdir "$build_dir"; cd "$build_dir"
+rm -rf "$build_dir"; mkdir "$build_dir"; cd "$build_dir"
 
 # Fetch jq
 wget -Ojq https://github.com/jqlang/jq/releases/download/jq-1.7/jq-linux-amd64
@@ -68,8 +68,19 @@ export FIM_COMPRESSION_LEVEL=6
 # Include rpcs3
 "$build_dir"/arch.fim fim-include-path "$build_dir"/rpcs3.dwarfs "/rpcs3.dwarfs"
 
+# Include runner script
+{ tee "$build_dir"/rpcs3.sh | sed -e "s/^/-- /"; } <<-'EOL'
+#!/bin/bash
+
+export LD_LIBRARY_PATH="/rpcs3/lib:$LD_LIBRARY_PATH"
+
+/rpcs3/bin/rpcs3 "$@"
+EOL
+chmod +x "$build_dir"/rpcs3.sh
+"$build_dir"/arch.fim fim-root cp "$build_dir"/rpcs3.sh /fim/rpcs3.sh
+
 # Set default command
-"$build_dir"/arch.fim fim-cmd /rpcs3/bin/rpcs3
+"$build_dir"/arch.fim fim-cmd /fim/rpcs3.sh
 
 # Set perms
 "$build_dir"/arch.fim fim-perms-set wayland,x11,pulseaudio,gpu,session_bus,input,usb
