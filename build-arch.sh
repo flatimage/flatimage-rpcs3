@@ -57,7 +57,7 @@ export FIM_COMPRESSION_LEVEL=6
 # Install video packages
 "$build_dir"/arch.fim fim-root fakechroot pacman -S xorg-server mesa lib32-mesa \
   glxinfo pcre xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon \
-  xf86-video-intel vulkan-intel lib32-vulkan-intel vulkan-tools
+  xf86-video-intel vulkan-intel lib32-vulkan-intel vulkan-tools --noconfirm
 
 # Compress main image
 "$build_dir"/arch.fim fim-compress
