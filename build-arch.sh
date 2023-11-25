@@ -54,6 +54,11 @@ export FIM_COMPRESSION_LEVEL=6
 # Install dependencies
 "$build_dir"/arch.fim fim-root fakechroot pacman -S libsm lib32-libsm fontconfig lib32-fontconfig noto-fonts --noconfirm
 
+# Install video packages
+"$build_dir"/arch.fim fim-root fakechroot pacman -S xorg-server mesa lib32-mesa \
+  glxinfo pcre xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon \
+  xf86-video-intel vulkan-intel lib32-vulkan-intel vulkan-tools
+
 # Compress main image
 "$build_dir"/arch.fim fim-compress
 
