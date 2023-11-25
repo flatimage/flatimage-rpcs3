@@ -45,9 +45,6 @@ tar xf arch.tar.xz
 # FIM_COMPRESSION_LEVEL
 export FIM_COMPRESSION_LEVEL=6
 
-# Set perms
-"$build_dir"/arch.fim fim-perms-set wayland,x11,pulseaudio,gpu,session_bus,input,usb
-
 # Resize
 "$build_dir"/arch.fim fim-resize 3G
 
@@ -69,8 +66,11 @@ export FIM_COMPRESSION_LEVEL=6
 # Set default command
 "$build_dir"/arch.fim fim-cmd /rpcs3/bin/rpcs3
 
+# Set perms
+"$build_dir"/arch.fim fim-perms-set wayland,x11,pulseaudio,gpu,session_bus,input,usb
+
 # Rename
-mv "arch.fim" rpcs3-arch.fim
+mv "$build_dir/arch.fim" rpcs3-arch.fim
 
 
 # // cmd: !./%
