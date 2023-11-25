@@ -49,7 +49,7 @@ export FIM_COMPRESSION_LEVEL=6
 "$build_dir"/arch.fim fim-resize 3G
 
 # Update
-"$build_dir"/arch.fim fim-perms-set fakechroot pacman -Syu --noconfirm
+"$build_dir"/arch.fim fim-root fakechroot pacman -Syu --noconfirm
 
 # Install dependencies
 "$build_dir"/arch.fim fim-root fakechroot pacman -S libsm lib32-libsm fontconfig lib32-fontconfig noto-fonts --noconfirm
