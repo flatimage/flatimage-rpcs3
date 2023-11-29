@@ -77,10 +77,11 @@ export LD_LIBRARY_PATH="/rpcs3/lib:$LD_LIBRARY_PATH"
 /rpcs3/bin/rpcs3 "$@"
 EOL
 chmod +x "$build_dir"/rpcs3.sh
-"$build_dir"/arch.fim fim-root cp "$build_dir"/rpcs3.sh /fim/rpcs3.sh
+"$build_dir"/arch.fim fim-root mkdir -p /fim/scripts
+"$build_dir"/arch.fim fim-root cp "$build_dir"/rpcs3.sh /fim/scripts/rpcs3.sh
 
 # Set default command
-"$build_dir"/arch.fim fim-cmd /fim/rpcs3.sh
+"$build_dir"/arch.fim fim-cmd /fim/scripts/rpcs3.sh
 
 # Set perms
 "$build_dir"/arch.fim fim-perms-set wayland,x11,pulseaudio,gpu,session_bus,input,usb
